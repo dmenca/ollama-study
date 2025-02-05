@@ -6,6 +6,13 @@
 docker run -d -v /root/ollama:/root/.ollama -p 11434:11434 --security-opt seccomp=unconfined --network host --gpus=all --name ollama ollama/ollama
 ```
 
+如果不想使用所有gpu，可以修改gpu参数
+```shell
+docker run --gpus "all" <image_name>  # 使用所有 GPU
+docker run --gpus "device=0,1" <image_name>  # 使用 GPU 0 和 GPU 1
+docker run --gpus "count=1" <image_name>  # 使用 1 张 GPU
+```
+
 通过ollama官网查看deepseek的模型，有不同的参数大小的模型，对应精度不同。精度越高模型越大对应使用的资源越多，本次使用32b的模型作为例子使用。
 
 运行模型，并且提问得到答案。
